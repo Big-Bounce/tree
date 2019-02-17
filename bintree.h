@@ -6,18 +6,21 @@
 
 #include <vector>
 #include <string>
+#include "structures.h"
 
-template <typename T>
+template <typename T, typename Direction = dsc>
 class binheap;
 
-template <typename T>
+template <typename T, typename Direction = dsc>
 class bsttree;
 
 template <typename T>
 class bintree
 {
-    friend class binheap<T>;
-    friend class bsttree<T>;
+    friend class binheap<T, dsc>;
+    friend class binheap<T, asc>;
+    friend class bsttree<T, dsc>;
+    friend class bsttree<T, asc>;
     struct node;
 
     struct description
@@ -94,6 +97,10 @@ public:
 
     //setting traversal type
     void set_traversal (traversal arg);
+
+private:
+    //no-output describing
+    void describe();
 
 };
 

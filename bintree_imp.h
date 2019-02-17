@@ -328,7 +328,10 @@ void bintree<T>::show()
       case flag_dsf_in_order: dsf_in_order(node::show); break;
       case flag_dsf_post_order: dsf_post_order(node::show); break;
       case flag_bsf: bsf(node::show); break;
+      default: flag_dsf_pre_order: dsf_pre_order(node::show);
    }
+
+   std::cout<<std::endl;
 
 }
 
@@ -344,6 +347,7 @@ std::string& bintree<T>::describe(std::string& arg)
             case flag_dsf_in_order: dsf_in_order(node::describe); break;
             case flag_dsf_post_order: dsf_post_order(node::describe); break;
             case flag_bsf: bsf(node::describe); break;
+            default: flag_dsf_pre_order: dsf_pre_order(node::describe);
         }
 
     std::ostringstream result;
@@ -391,6 +395,21 @@ template <typename T>
 void bintree<T>::set_traversal (traversal arg)
 {
     _traversal = arg;
+}
+
+template <typename T>
+void bintree<T>::describe()
+{
+    _features.prepare();
+    if (_root != 0x0)
+        switch (_traversal)
+        {
+            case flag_dsf_pre_order: dsf_pre_order(node::describe); break;
+            case flag_dsf_in_order: dsf_in_order(node::describe); break;
+            case flag_dsf_post_order: dsf_post_order(node::describe); break;
+            case flag_bsf: bsf(node::describe); break;
+            default: flag_dsf_pre_order: dsf_pre_order(node::describe);
+        }
 }
 
 #endif // BINTREE_IMP_H_INCLUDED

@@ -4,6 +4,7 @@
 #define COMPARISION_ACCURACY 0.001
 #include <cmath>
 #include <string>
+#include <iostream>
 
 template <typename T>
 struct one_value
@@ -30,18 +31,18 @@ struct two_values
 //PRIORITY QUEUE'S DATA TYPE AND OUTPUT OPERATOR
 
 template <typename T, typename U>
-struct different_values
+struct different_types
 {
     T first;
     U second;
-    different_values(): first(T()), second(U()) {}
-    different_values(T const& arg1, U const& arg2): first(arg1), second(arg2) {}
+    different_types(): first(T()), second(U()) {}
+    different_types(T const& arg1, U const& arg2): first(arg1), second(arg2) {}
 };
 
 template <typename T, typename U>
-std::ostream& operator<< (std::ostream& stream, different_values<T,U> const &arg)
+std::ostream& operator<< (std::ostream& stream, different_types<T,U> const &arg)
 {
-    return stream << "@Data: " << arg.first << " Priority: " << arg.second << "@";
+    return stream << "@Data:" << arg.first << " Priority:" << arg.second << "@";
 }
 
 //======================================================
@@ -69,7 +70,7 @@ struct asc
         bool compare(T const& arg1, T const& arg2)
         {return arg1 < arg2;}
     template <typename T, typename U>
-        bool compare(different_values<T,U> const& arg1, different_values<T,U> const& arg2)
+        bool compare(different_types<T,U> const& arg1, different_types<T,U> const& arg2)
         {return compare(arg1.second, arg2.second);}
     ~asc(){}
 };
@@ -97,7 +98,7 @@ struct dsc
         bool compare(T const& arg1, T const& arg2)
         {return arg1 > arg2;}
     template <typename T, typename U>
-        bool compare(different_values<T,U> const& arg1, different_values<T,U> const& arg2)
+        bool compare(different_types<T,U> const& arg1, different_types<T,U> const& arg2)
         {return compare(arg1.second, arg2.second);}
     ~dsc(){}
 };
