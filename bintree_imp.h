@@ -24,7 +24,7 @@ bintree<T>::description::description():
 }
 
 template <typename T>
-void bintree<T>::description::prepare()
+inline void bintree<T>::description::prepare()
 {
     *this = bintree<T>::description();
 }
@@ -41,7 +41,7 @@ bintree<T>::node::node(node const& arg): up(0x0), left(0x0), right(0x0), level(0
 }
 
 template <typename T>
-typename bintree<T>::node& bintree<T>::node::operator= (node const &arg)
+inline typename bintree<T>::node& bintree<T>::node::operator= (node const &arg)
 {
     value = arg.value;
     return *this;
@@ -109,7 +109,7 @@ void bintree<T>::node::show(description &arg)
 }
 
 template <typename T>
-void bintree<T>::node::describe(description &arg)
+inline void bintree<T>::node::describe(description &arg)
 {
     //node count
     if (level < arg.level_nodes.size())
@@ -157,7 +157,7 @@ bintree<T>::bintree(bintree const &arg): _root(0x0), _features(), _traversal(fla
 }
 
 template <typename T>
-bintree<T>& bintree<T>::operator= (bintree const &arg)
+inline bintree<T>& bintree<T>::operator= (bintree const &arg)
 {
     return *this;
 }
@@ -392,7 +392,7 @@ std::string& bintree<T>::describe(std::string& arg)
 }
 
 template <typename T>
-void bintree<T>::set_traversal (traversal arg)
+inline void bintree<T>::set_traversal (traversal arg)
 {
     _traversal = arg;
 }

@@ -12,11 +12,11 @@ class binheap
 public:
     binheap();
     binheap(std::vector<T>& arg);
-    void show();
-    std::string& describe(std::string& arg);
+    inline void show();
+    inline std::string& describe(std::string& arg);
     void push(const T& arg);
     void pop();
-    void set_traversal (typename bintree<T>::traversal arg);
+    inline void set_traversal (typename bintree<T>::traversal arg);
 };
 
 #include "binheap_imp.h"

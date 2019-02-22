@@ -35,7 +35,7 @@ class bintree
         std::vector<unsigned> level_nodes;
 
         description();
-        void prepare();
+        inline void prepare();
     };
 
     struct node
@@ -48,13 +48,13 @@ class bintree
 
         node();
         node(node const& arg);
-        node& operator= (node const& arg);
+        inline node& operator= (node const& arg);
         ~node();
 
         node(T const& val, node* parent = 0x0);
         void create_children (std::vector<T> &data, node *caller = 0x0);
         void show(description &arg);
-        void describe(description &arg);
+        inline void describe(description &arg);
     };
 
 public:
@@ -85,7 +85,7 @@ private:
 public:
     bintree();
     bintree(bintree const& arg);
-    bintree& operator= (bintree const& arg);
+    inline bintree& operator= (bintree const& arg);
     ~bintree();
 
     //working constructors
@@ -96,7 +96,7 @@ public:
     std::string& describe(std::string& arg);
 
     //setting traversal type
-    void set_traversal (traversal arg);
+    inline void set_traversal (traversal arg);
 
 private:
     //no-output describing

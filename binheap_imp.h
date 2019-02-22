@@ -20,13 +20,13 @@ binheap<T, Direction>::binheap(std::vector<T>& arg): _tree()
 }
 
 template <typename T, typename Direction>
-void binheap<T, Direction>::show()
+inline void binheap<T, Direction>::show()
 {
     _tree.show();
 }
 
 template <typename T, typename Direction>
-std::string& binheap<T, Direction>::describe(std::string& arg)
+inline std::string& binheap<T, Direction>::describe(std::string& arg)
 {
     return _tree.describe(arg);
 }
@@ -130,7 +130,7 @@ void binheap<T, Direction>::pop()
 }
 
 template <typename T, typename Direction>
-void binheap<T, Direction>::set_traversal (typename bintree<T>::traversal arg)
+inline void binheap<T, Direction>::set_traversal (typename bintree<T>::traversal arg)
 {
     _tree.set_traversal(arg);
 }

@@ -52,13 +52,13 @@ struct eq
 {
     eq(){}
     template <typename T>
-        bool compare(T const& arg1, T const& arg2)
+        inline bool compare(T const& arg1, T const& arg2)
         {return arg1 == arg2;}
     ~eq(){}
 };
 
 template <>
-bool eq::compare<double> (double const& arg1, double const& arg2)
+inline bool eq::compare<double> (double const& arg1, double const& arg2)
 {
     return fabs(arg1 - arg2) < COMPARISION_ACCURACY;
 }
@@ -67,10 +67,10 @@ struct asc
 {
     asc(){}
     template <typename T>
-        bool compare(T const& arg1, T const& arg2)
+        inline bool compare(T const& arg1, T const& arg2)
         {return arg1 < arg2;}
     template <typename T, typename U>
-        bool compare(different_types<T,U> const& arg1, different_types<T,U> const& arg2)
+        inline bool compare(different_types<T,U> const& arg1, different_types<T,U> const& arg2)
         {return compare(arg1.second, arg2.second);}
     ~asc(){}
 };
@@ -95,10 +95,10 @@ struct dsc
 {
     dsc(){}
     template <typename T>
-        bool compare(T const& arg1, T const& arg2)
+        inline bool compare(T const& arg1, T const& arg2)
         {return arg1 > arg2;}
     template <typename T, typename U>
-        bool compare(different_types<T,U> const& arg1, different_types<T,U> const& arg2)
+        inline bool compare(different_types<T,U> const& arg1, different_types<T,U> const& arg2)
         {return compare(arg1.second, arg2.second);}
     ~dsc(){}
 };
