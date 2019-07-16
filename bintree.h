@@ -55,6 +55,9 @@ class bintree
         void create_children (std::vector<T> &data, node *caller = 0x0);
         void show(description &arg);
         inline void describe(description &arg);
+
+        void replace_with_child (node *arg);
+        void rotation (node *child, node **root);
     };
 
 public:

@@ -72,6 +72,9 @@ struct asc
     template <typename T, typename U>
         inline bool compare(different_types<T,U> const& arg1, different_types<T,U> const& arg2)
         {return compare(arg1.second, arg2.second);}
+    template <typename T>
+        bool compare(T* arg1, T* arg2) const
+        {return compare(*arg1, *arg2);}
     ~asc(){}
 };
 
@@ -100,6 +103,10 @@ struct dsc
     template <typename T, typename U>
         inline bool compare(different_types<T,U> const& arg1, different_types<T,U> const& arg2)
         {return compare(arg1.second, arg2.second);}
+    template <typename T>
+        bool compare(T* arg1, T* arg2) const
+        {return compare(*arg1, *arg2);}
+
     ~dsc(){}
 };
 
@@ -117,6 +124,20 @@ bool dsc::compare(std::string const& arg1, std::string const& arg2)
     if (arg1.size() > arg2.size())
         return true;
     return false;
+}
+
+//===========================================================
+
+template <typename T>
+void show_me(T const& arg)
+{
+    std::cout << arg << " ";
+}
+
+template <typename T>
+void show_me(T* arg)
+{
+    std::cout << *arg << " ";
 }
 
 #endif // STRUCTURES_H_INCLUDED

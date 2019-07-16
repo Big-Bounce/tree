@@ -105,7 +105,7 @@ void bintree<T>::node::create_children(std::vector<T>& data, node* caller)
 template <typename T>
 void bintree<T>::node::show(description &arg)
 {
-    std::cout << value << " ";
+    show_me(value);
 }
 
 template <typename T>
@@ -142,6 +142,59 @@ inline void bintree<T>::node::describe(description &arg)
         ++arg.onechildcount;
     }
 
+}
+
+template <typename T>
+void bintree<T>::node::replace_with_child (bintree<T>::node *arg)
+{
+    assert(arg != 0x0); //zero node
+    assert(arg == left || arg == right); //not my child
+    assert (!(arg == left && right != 0x0 && arg -> right != 0x0)); //right subtree fail
+    assert (!(arg == right && left != 0x0 && arg -> left != 0x0)); //left subtree fail
+
+    if (arg == left || left == 0x0)
+        left = arg -> left;
+    if (arg == right || right == 0x0)
+        right = arg -> right;
+    value = arg -> value;
+    arg -> left = 0x0;
+    arg -> right = 0x0;
+    delete arg;
+
+}
+
+template <typename T>
+void bintree<T>::node::rotation (bintree<T>::node *child, bintree<T>::node **root)
+{
+    assert(child != 0x0); //zero node
+    assert(child == left || child == right); //not my child
+
+    if (child == left)
+    {
+        left = child -> right;
+        if (left != 0x0)
+            left -> up = this;
+        child -> right = this;
+    }
+    else
+    {
+        right = child -> left;
+        if (right != 0x0)
+            right -> up = this;
+        child -> left = this;
+    }
+
+    child -> up = up;
+    up = child;
+    if (*root == this)
+        *root = child;
+    else
+    {
+        if (child -> up -> left == this)
+            child -> up -> left = child;
+        else
+            child -> up -> right = child;
+    }
 }
 
 //============================================================
